@@ -44369,7 +44369,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
             }
         }*/
 
-		Device (IC13)
+		Device (IC14)
         {
             Name (_HID, "QCOM0220")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
@@ -44385,15 +44385,15 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
                 Name (RBUF, ResourceTemplate ()
                 {
                     Memory32Fixed (ReadWrite,
-                        0x00A90000,         // Address Base
+                        0x00A94000,         // Address Base
                         0x00004000,         // Address Length
                         )
                     Interrupt (ResourceConsumer, Level, ActiveHigh, Exclusive, ,, )
                     {
-                        0x00000185,
+                        0x00000186,
                     }
                 })
-                Return (RBUF) /* \_SB_.IC13._CRS.RBUF */
+                Return (RBUF) /* \_SB_.IC14._CRS.RBUF */
             }
         }
 
@@ -46942,7 +46942,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
                 Package (0x07)
                 {
                     "DEVICE", 
-                    "\\_SB.IC13", 
+                    "\\_SB.IC14", 
                     Package (0x03)
                     {
                         "COMPONENT", 
@@ -63187,33 +63187,34 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
 
         Device (TSC1)
         {
-            Name (_HID, "MSHW1003")  // _HID: Hardware ID
+            Name (_HID, "NVTS0001")  // _HID: Hardware ID
             Name (_UID, One)  // _UID: Unique ID
+			Name (_CID, "PNP0C50")
             Name (_DEP, Package (0x03)  // _DEP: Dependencies
             {
                 \_SB.PEP0,
                 \_SB.GIO0, 
-                \_SB.IC13
+                \_SB.IC14
             })
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
             {
                 Name (RBUF, ResourceTemplate ()
                 {
                     I2cSerialBusV2 (0x0020, ControllerInitiated, 0x00061A80,
-                        AddressingMode7Bit, "\\_SB.IC13",
+                        AddressingMode7Bit, "\\_SB.IC14",
                         0x00, ResourceConsumer, , Exclusive,
                         )
                     GpioInt (Edge, ActiveLow, ExclusiveAndWake, PullUp, 0x0000,
                         "\\_SB.GIO0", 0x00, ResourceConsumer, ,
                         )
                         {   // Pin list
-                            0x007D
+                            0x001F
                         }
                     GpioIo (Exclusive, PullNone, 0x0000, 0x0000, IoRestrictionNone,
                         "\\_SB.GIO0", 0x00, ResourceConsumer, ,
                         )
                         {   // Pin list
-                            0x0063
+                            0x0020
                         }
                 })
                 Return (RBUF) /* \_SB_.TSC1._CRS.RBUF */
