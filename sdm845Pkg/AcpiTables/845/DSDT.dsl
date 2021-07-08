@@ -44341,7 +44341,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
             }
         }*/
 
-        /*Device (IC11)
+        Device (IC13)
         {
             Name (_HID, "QCOM0220")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
@@ -44357,27 +44357,26 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
                 Name (RBUF, ResourceTemplate ()
                 {
                     Memory32Fixed (ReadWrite,
-                        0x00A88000,         // Address Base
+                        0x00A90000,         // Address Base
                         0x00004000,         // Address Length
                         )
                     Interrupt (ResourceConsumer, Level, ActiveHigh, Exclusive, ,, )
                     {
-                        0x00000183,
+                        0x00000185,
                     }
                 })
                 Return (RBUF) // \_SB_.IC11._CRS.RBUF 
             }
-        }*/
+        }
 
 		Device (IC14)
         {
             Name (_HID, "QCOM0220")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, 0x0D)  // _UID: Unique ID
-            Name (_DEP, Package (0x02)  // _DEP: Dependencies
+            Name (_DEP, Package (0x01)  // _DEP: Dependencies
             {
-                \_SB.PEP0,
-				\_SB.QGP0
+                \_SB.PEP0
             })
             Name (_CCA, Zero)  // _CCA: Cache Coherency Attribute
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
@@ -44385,15 +44384,15 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
                 Name (RBUF, ResourceTemplate ()
                 {
                     Memory32Fixed (ReadWrite,
-                        0x00A94000,         // Address Base
+                        0x00A98000,         // Address Base
                         0x00004000,         // Address Length
                         )
-                    Interrupt (ResourceConsumer, Level, ActiveHigh, Exclusive, ,, )
+                    /*Interrupt (ResourceConsumer, Level, ActiveHigh, Exclusive, ,, )
                     {
                         0x00000186,
-                    }
+                    }*/
                 })
-                Return (RBUF) /* \_SB_.IC14._CRS.RBUF */
+                Return (RBUF) // \_SB_.IC14._CRS.RBUF 
             }
         }
 
@@ -46983,7 +46982,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
                             "CLOCK", 
                             Package (0x04)
                             {
-                                "gcc_qupv3_wrap1_s4_clk", 
+                                "gcc_qupv3_wrap1_s6_clk", 
                                 0x08, 
                                 0x0124F800, 
                                 0x04
@@ -47086,7 +47085,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
                             "CLOCK", 
                             Package (0x02)
                             {
-                                "gcc_qupv3_wrap1_s4_clk", 
+                                "gcc_qupv3_wrap1_s6_clk", 
                                 0x02
                             }
                         }, 
@@ -63189,7 +63188,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
         {
             Name (_HID, "NVTS0001")  // _HID: Hardware ID
             Name (_UID, One)  // _UID: Unique ID
-			Name (_CID, "PNP0C50")
             Name (_DEP, Package (0x03)  // _DEP: Dependencies
             {
                 \_SB.PEP0,
