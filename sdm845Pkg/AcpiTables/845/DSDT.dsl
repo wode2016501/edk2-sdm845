@@ -43919,9 +43919,9 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
 							"PMICVREGVOTE", 
 							Package (0x06)
 							{
-								"PPP_RESOURCE_ID_LDO28_A", 
+								"PPP_RESOURCE_ID_LDO14_A", 
 								One, 
-								2856000, 
+								1800000, 
 								One, 
 								0x07, 
 								Zero
@@ -43970,7 +43970,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
                             "TLMMGPIO", 
                             Package (0x06)
                             {
-                                99, 
+                                32, 
                                 One, 
                                 Zero, 
                                 One, 
@@ -43994,7 +43994,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
                             "TLMMGPIO", 
                             Package (0x06)
                             {
-                                99, 
+                                32, 
                                 Zero, 
                                 Zero, 
                                 One, 
@@ -44017,7 +44017,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
                             "TLMMGPIO", 
                             Package (0x06)
                             {
-                                99, 
+                                32, 
                                 One, 
                                 Zero, 
                                 One, 
@@ -44037,7 +44037,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
                             "TLMMGPIO", 
                             Package (0x06)
                             {
-                                99, 
+                                32, 
                                 Zero, 
                                 Zero, 
                                 One, 
@@ -44369,7 +44369,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
             }
         }
 
-		Device (IC14)
+		Device (IC15)
         {
             Name (_HID, "QCOM0220")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
@@ -44387,12 +44387,12 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
                         0x00A98000,         // Address Base
                         0x00004000,         // Address Length
                         )
-                    /*Interrupt (ResourceConsumer, Level, ActiveHigh, Exclusive, ,, )
+                    Interrupt (ResourceConsumer, Level, ActiveHigh, Exclusive, ,, )
                     {
-                        0x00000186,
-                    }*/
+                        0x00000187,
+                    }
                 })
-                Return (RBUF) // \_SB_.IC14._CRS.RBUF 
+                Return (RBUF) // \_SB_.IC15._CRS.RBUF 
             }
         }
 
@@ -46941,7 +46941,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
                 Package (0x07)
                 {
                     "DEVICE", 
-                    "\\_SB.IC14", 
+                    "\\_SB.IC15", 
                     Package (0x03)
                     {
                         "COMPONENT", 
@@ -46953,10 +46953,36 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x09)
+                    Package (0x0B)
                     {
                         "DSTATE", 
                         Zero, 
+                        Package (0x02)
+                        {
+                            "BUSARB", 
+                            Package (0x05)
+                            {
+                                0x03, 
+                                "ICBID_MASTER_BLSP_2", 
+                                "ICBID_SLAVE_EBI1", 
+                                0x53724E00, 
+                                0x0682
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "BUSARB", 
+                            Package (0x05)
+                            {
+                                0x03, 
+                                "ICBID_MASTER_APPSS_PROC", 
+                                "ICBID_SLAVE_BLSP_2", 
+                                0x08F0D180, 
+                                0x02FAF080
+                            }
+                        }, 
+
                         Package (0x02)
                         {
                             "CLOCK", 
@@ -46991,27 +47017,21 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
 
                         Package (0x02)
                         {
-                            "BUSARB", 
-                            Package (0x05)
+                            "CLOCK", 
+                            Package (0x02)
                             {
-                                0x03, 
-                                "ICBID_MASTER_BLSP_2", 
-                                "ICBID_SLAVE_EBI1", 
-                                0x53724E00, 
-                                0x0682
+                                "gcc_qupv3_wrap1_core_2x_clk", 
+                                One
                             }
                         }, 
 
                         Package (0x02)
                         {
-                            "BUSARB", 
-                            Package (0x05)
+                            "CLOCK", 
+                            Package (0x02)
                             {
-                                0x03, 
-                                "ICBID_MASTER_APPSS_PROC", 
-                                "ICBID_SLAVE_BLSP_2", 
-                                0x08D24D00, 
-                                0x02FAF080
+                                "gcc_qupv3_wrap1_core_clk", 
+                                One
                             }
                         }, 
 
@@ -47020,9 +47040,9 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
                             "TLMMGPIO", 
                             Package (0x06)
                             {
-                                0x31, 
+                                0x21, 
                                 One, 
-                                One, 
+                                0x02, 
                                 One, 
                                 0x03, 
                                 Zero
@@ -47034,9 +47054,9 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
                             "TLMMGPIO", 
                             Package (0x06)
                             {
-                                0x32, 
+                                0x22, 
                                 One, 
-                                One, 
+                                0x02, 
                                 One, 
                                 0x03, 
                                 Zero
@@ -47056,7 +47076,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
                         0x02
                     }, 
 
-                    Package (0x09)
+                    Package (0x0B)
                     {
                         "DSTATE", 
                         0x03, 
@@ -47092,6 +47112,26 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
 
                         Package (0x02)
                         {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_qupv3_wrap1_core_2x_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "CLOCK", 
+                            Package (0x02)
+                            {
+                                "gcc_qupv3_wrap1_core_clk", 
+                                0x02
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
                             "BUSARB", 
                             Package (0x05)
                             {
@@ -47121,7 +47161,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
                             "TLMMGPIO", 
                             Package (0x06)
                             {
-                                0x31, 
+                                0x21, 
                                 Zero, 
                                 Zero, 
                                 Zero, 
@@ -47135,7 +47175,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
                             "TLMMGPIO", 
                             Package (0x06)
                             {
-                                0x32, 
+                                0x22, 
                                 Zero, 
                                 Zero, 
                                 Zero, 
@@ -47144,7 +47184,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
                             }
                         }
                     }
-                },
+                }, 
 
                 Package (0x07)
                 {
@@ -63187,19 +63227,23 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
         Device (TSC1)
         {
             Name (_HID, "NVTS0001")  // _HID: Hardware ID
+			//Name (_CID, "PNP0C50" /* HID Protocol Device (I2C bus) */)  // _CID: Compatible ID
+            Name (_SUB, "C153144D")  // _SUB: Subsystem ID
+            Name (_HRV, One)  // _HRV: Hardware Revision
+            Name (_ADR, Zero)  // _ADR: Address
             Name (_UID, One)  // _UID: Unique ID
             Name (_DEP, Package (0x03)  // _DEP: Dependencies
             {
                 \_SB.PEP0,
                 \_SB.GIO0, 
-                \_SB.IC14
+                \_SB.IC15
             })
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
             {
                 Name (RBUF, ResourceTemplate ()
                 {
-                    I2cSerialBusV2 (0x0020, ControllerInitiated, 0x00061A80,
-                        AddressingMode7Bit, "\\_SB.IC14",
+                    I2cSerialBusV2 (0x0062, ControllerInitiated, 0x00061A80,
+                        AddressingMode7Bit, "\\_SB.IC15",
                         0x00, ResourceConsumer, , Exclusive,
                         )
                     GpioInt (Edge, ActiveLow, ExclusiveAndWake, PullUp, 0x0000,
@@ -63226,7 +63270,70 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
                 })
                 Return (RBUF)
             }*/
+			
+			Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
+            {
+                While (One)
+                {
+                    Name (_T_0, Buffer (0x01)  // _T_x: Emitted by ASL Compiler
+                    {
+                         0x00                                             // .
+                    })
+                    CopyObject (ToBuffer (Arg0), _T_0) 
+                    If ((_T_0 == ToUUID ("3cdff6f7-4267-4555-ad05-b30a3d8938de")  ))
+                    {
+                        While (One)
+                        {
+                            Name (_T_1, 0x00)  // _T_x: Emitted by ASL Compiler
+                            _T_1 = ToInteger (Arg2)
+                            If ((_T_1 == Zero))
+                            {
+                                While (One)
+                                {
+                                    Name (_T_2, 0x00)  // _T_x: Emitted by ASL Compiler
+                                    _T_2 = ToInteger (Arg1)
+                                    If ((_T_2 == One))
+                                    {
+                                        Return (Buffer (One)
+                                        {
+                                             0x03                                             // .
+                                        })
+                                    }
+                                    Else
+                                    {
+                                        Return (Buffer (One)
+                                        {
+                                             0x00                                             // .
+                                        })
+                                    }
 
+                                    Break
+                                }
+                            }
+                            ElseIf ((_T_1 == One))
+                            {
+                                Debug = "Method _DSM Function HID"
+                                Return (0x20)
+                            }
+                            Else
+                            {
+                            }
+
+                            Break
+                        }
+                    }
+                    Else
+                    {
+                        Return (Buffer (One)
+                        {
+                             0x00                                             // .
+                        })
+                    }
+
+                    Break
+                }
+            }
+			
             Name (PGID, Buffer (0x0A)
             {
                 "\\_SB.TSC1"
@@ -63277,7 +63384,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
 
         Device (BTNS)
         {
-            Name (_HID, "ACPI0011" /* Generic Buttons Device */)  // _HID: Hardware ID
+            Name (_HID, "ACPI0011")  /* Generic Buttons Device */  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, Zero)  // _UID: Unique ID
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
@@ -63294,7 +63401,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
                         "\\_SB.PM01", 0x00, ResourceConsumer, ,
                         )
                         {   // Pin list
-                            0x0085
+                            0x0006
                         }
                     GpioInt (Edge, ActiveBoth, ExclusiveAndWake, PullDown, 0x0000,
                         "\\_SB.PM01", 0x00, ResourceConsumer, ,
@@ -63326,7 +63433,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
                         Zero, 
                         One, 
                         One, 
-                        0x81
+                        0xE9
                     }, 
 
                     Package (0x05)
@@ -63335,7 +63442,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM850 ", 0x00000003)
                         One, 
                         One, 
                         0x0C, 
-                        0xE9
+                        0xEA
                     }, 
 
                     Package (0x05)
