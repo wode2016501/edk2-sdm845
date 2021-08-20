@@ -509,6 +509,7 @@ APRIORI DXE {
   # USB Host Support
   #
   INF MdeModulePkg/Bus/Usb/UsbBusDxe/UsbBusDxe.inf
+  INF MdeModulePkg/Bus/Usb/UsbMouseDxe/UsbMouseDxe.inf
 
   #
   # USB Mass Storage Support
@@ -580,6 +581,7 @@ APRIORI DXE {
   INF MdeModulePkg/Universal/DriverHealthManagerDxe/DriverHealthManagerDxe.inf
   INF MdeModulePkg/Universal/BdsDxe/BdsDxe.inf
   INF MdeModulePkg/Application/UiApp/UiApp.inf
+  INF sdm845Pkg/Application/HelloWorld/helloworld.inf
   INF sdm845Pkg/Drivers/LogoDxe/LogoDxe.inf
 
 

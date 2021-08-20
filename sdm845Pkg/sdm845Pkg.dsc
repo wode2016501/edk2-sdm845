@@ -69,6 +69,8 @@
   MemoryInitPeiLib|sdm845Pkg/Library/MemoryInitPeiLib/PeiMemoryAllocationLib.inf
   PlatformPeiLib|sdm845Pkg/Library/PlatformPeiLib/PlatformPeiLib.inf
 
+  LittleVglLib|sdm845Pkg/Library/LittleVglLib/LittleVglLib.inf
+
 [LibraryClasses.common.SEC]
   PrePiLib|EmbeddedPkg/Library/PrePiLib/PrePiLib.inf
   ExtractGuidedSectionLib|EmbeddedPkg/Library/PrePiExtractGuidedSectionLib/PrePiExtractGuidedSectionLib.inf
@@ -213,6 +215,7 @@
   # USB Host Support
   #
   MdeModulePkg/Bus/Usb/UsbBusDxe/UsbBusDxe.inf
+  MdeModulePkg/Bus/Usb/UsbMouseDxe/UsbMouseDxe.inf
 
   #
   # USB Mass Storage Support
@@ -228,6 +231,7 @@
   # Fastboot
   #
   EmbeddedPkg/Application/AndroidFastboot/AndroidFastbootApp.inf
+  sdm845Pkg/Application/HelloWorld/helloworld.inf
 
 
   #

@@ -1,0 +1,46 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = HelloWorld
+  FILE_GUID                      = C5066246-9923-4A7C-BA7B-453D7241AF75
+  MODULE_TYPE                    = UEFI_APPLICATION
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = UefiMain
+
+[BuildOptions.AARCH64]
+  GCC:*_*_*_CC_FLAGS = -Wno-unused-function -Wno-unused-variable
+
+[Sources]
+  helloworld.c
+  Display/GopBlt.c
+  Frontpage/Frontpage.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  sdm845Pkg/sdm845Pkg.dec
+
+[LibraryClasses]
+  DevicePathLib
+  BaseLib
+  UefiRuntimeServicesTableLib
+  ReportStatusCodeLib
+  MemoryAllocationLib
+  UefiLib
+  UefiBootServicesTableLib
+  BaseMemoryLib
+  DebugLib
+  PrintLib
+  HiiLib
+  UefiApplicationEntryPoint
+  PcdLib
+  UefiHiiServicesLib
+  UefiBootManagerLib
+  LittleVglLib
+  IoLib
+
+[Guids]
+   
+[Ppis]
+
+[Protocols]
+
